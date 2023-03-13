@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import styled from "styled-components";
-import BaseTable  from "./BaseTable";
+import BaseTable from "./BaseTable";
 
 const PAGE_SIZE = 10;
 
@@ -31,6 +31,20 @@ const TableComponent = () => {
             .withAutomaticReconnect()
             .build();
 
+        async function subscribe() {
+            try {
+                const response = await fetch("https://localhost:44319/subscription/subscribe");
+                if (!response.ok) {
+                    throw new Error('Unsuccessful try to subscribe');
+                }
+
+                console.log("SUBSCRIBED");
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        subscribe();
         setConnection(newConnection);
     }, []);
 
@@ -58,8 +72,8 @@ const TableComponent = () => {
         const endIndex = startIndex + PAGE_SIZE;
 
         console.log([...arrivals.slice(startIndex, endIndex)]);
-        
-        setPageData(()=> [...arrivals.slice(startIndex, endIndex)]);
+
+        setPageData(() => [...arrivals.slice(startIndex, endIndex)]);
     }, [arrivals, activePage])
 
 
@@ -79,13 +93,13 @@ const TableComponent = () => {
     };
 
     return (
-        <BaseTable 
-        arrivals={pageData}
-        activePage={activePage}
-        handlePageChange={handlePageChange}
-        pagesCount={pagesCount}
-        handleSort={handleSort}
-        label={"Live"}
+        <BaseTable
+            arrivals={pageData}
+            activePage={activePage}
+            handlePageChange={handlePageChange}
+            pagesCount={pagesCount}
+            handleSort={handleSort}
+            label={"Live"}
         />
     );
 }
