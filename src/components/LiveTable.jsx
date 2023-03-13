@@ -3,37 +3,6 @@ import { HubConnectionBuilder } from "@microsoft/signalr";
 import styled from "styled-components";
 import BaseTable  from "./BaseTable";
 
-const TableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 800px;
-`;
-
-const TableHead = styled.thead`
-  background-color: #f5f5f5;
-`;
-
-const TableBody = styled.tbody``;
-
-const TableRow = styled.tr``;
-
-const TableHeaderCell = styled.th`
-  padding: 8px;
-  text-align: left;
-  cursor: pointer;
-`;
-
-const TableCell = styled.td`
-  padding: 8px;
-`;
-
-
 const PAGE_SIZE = 10;
 
 const TableComponent = () => {

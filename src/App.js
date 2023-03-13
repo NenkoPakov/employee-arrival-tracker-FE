@@ -3,7 +3,7 @@ import StaticTable from './components/StaticTable';
 import LiveTable from './components/LiveTable';
 import ToggleSwitchButton from './components/ToggleSwitchButton';
 import './App.css';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 const SwitchButton = styled.button`
@@ -26,7 +26,7 @@ const SwitchButton = styled.button`
 
 
 function App() {
-  const [isLive, setIsLive] = useState([false]);
+  const [isLive, setIsLive] = useState(false);
 
   return (
     <div className="App">

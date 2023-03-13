@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ToggleSwitch = ({ isLive,onToggle,leftLabel,rightLabel }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(isLive?0:1);
 
   const handleToggle = () => {
     const newIndex = (activeIndex + 1) % 2;
@@ -26,8 +26,10 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-const Label = styled.span`
-  margin: 0 8px;
+const Label = styled.h2`
+margin: 20px;
+font-size: 24px;
+font-weight: bold;
 `;
 
 const Switch = styled.div`
