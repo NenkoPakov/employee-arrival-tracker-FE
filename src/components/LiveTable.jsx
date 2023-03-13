@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
-import styled from "styled-components";
 import BaseTable from "./BaseTable";
 
 const PAGE_SIZE = 10;
@@ -14,15 +13,18 @@ const TableComponent = () => {
     const [pagesCount, setPagesCount] = useState(1);
     const [pageData, setPageData] = useState([]);
 
-    const sortedData = useMemo(() => {
+    useMemo(() => {
         if (!sortField) {
             return arrivals;
         }
         const direction = sortDirection === "asc" ? 1 : -1;
-        var a = [...arrivals]
-        return [...arrivals].sort((a, b) =>
-            a[sortField].toString().localeCompare(b[sortField]) * direction
-        );
+
+        setArrivals(() =>[...arrivals].sort((a, b) => {
+            var aValue = a[sortField] != null ? a[sortField].toString() : '';
+            var bValue = b[sortField] != null ? b[sortField].toString() : '';
+            return aValue.localeCompare(bValue) * direction;
+          }
+        ));
     }, [sortField, sortDirection]);
 
     useEffect(() => {
