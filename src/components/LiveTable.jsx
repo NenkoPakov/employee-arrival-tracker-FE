@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import BaseTable from "./BaseTable";
+import config from "../config";
 
 const PAGE_SIZE = 10;
 
@@ -29,13 +30,13 @@ const TableComponent = () => {
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
-            .withUrl("https://localhost:44319/hubs/employees")
+            .withUrl(`${config.apiUri}/hubs/employees`)
             .withAutomaticReconnect()
             .build();
 
         async function subscribe() {
             try {
-                const response = await fetch("https://localhost:44319/subscription/subscribe");
+                const response = await fetch(`${config.apiUri}/subscription/subscribe`);
                 if (!response.ok) {
                     throw new Error('Unsuccessful try to subscribe');
                 }

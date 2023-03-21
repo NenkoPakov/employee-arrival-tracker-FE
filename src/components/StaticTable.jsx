@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
+import config from "../config";
 import BaseTable  from "./BaseTable";
 
 const PAGE_SIZE = 10;
@@ -13,7 +14,7 @@ const TableComponent = () => {
     useEffect(() => {
         async function fetchPagesCount() {
             try {
-                const response = await fetch(`https://localhost:44319/arrival/count`);
+                const response = await fetch(`${config.apiUri}/arrival/count`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -36,7 +37,7 @@ const TableComponent = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`https://localhost:44319/arrival/page/${activePage}?orderByField=${sortField}&isAscending=${sortDirection=='asc'}`);
+                const response = await fetch(`${config.apiUri}/arrival/page/${activePage}?orderByField=${sortField}&isAscending=${sortDirection=='asc'}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
